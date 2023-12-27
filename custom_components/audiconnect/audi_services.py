@@ -250,7 +250,7 @@ class AudiService:
         }
 
         # Starting in 2023, US users need to point at the aoa (Audi of America) URL.
-        base_url = "https://app-api.live.my.audi.com/vgql/v1/graphql"
+        base_url = "https://app-api.live-my.audi.com/vgql/v1/graphql"
         usa_url = "https://app-api.my.aoa.audi.com/vgql/v1/graphql"
 
         request_url = usa_url if self._country.upper() == "US" else base_url
