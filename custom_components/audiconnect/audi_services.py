@@ -248,9 +248,16 @@ class AudiService:
         req_data = {
             "query": "query vehicleList {\n userVehicles {\n vin\n mappingVin\n vehicle { core { modelYear\n }\n media { shortName\n longName }\n }\n csid\n commissionNumber\n type\n devicePlatform\n mbbConnect\n userRole {\n role\n }\n vehicle {\n classification {\n driveTrain\n }\n }\n nickname\n }\n}"
         }
+
+        # Starting in 2023, US users need to point at the aoa (Audi of America) URL.
+        base_url = "https://app-api.live.my.audi.com/vgql/v1/graphql"
+        usa_url = "https://app-api.my.aoa.audi.com/vgql/v1/graphql"
+
+        request_url = usa_url if self._country.upper() == "US" else base_url
+
         req_rsp, rep_rsptxt = await self._api.request(
             "POST",
-            "https://app-api.live-my.audi.com/vgql/v1/graphql",
+            request_url,
             json.dumps(req_data),
             headers=headers,
             allow_redirects=False,
