@@ -258,7 +258,7 @@ class AudiService:
         )
         vins = json.loads(rep_rsptxt)
         if "data" not in vins:
-            _LOGGER.error("Unexpected response: " + rep_rsptxt)
+            _LOGGER.error("Unexpected response: " + str(rep_rsptxt))
             raise Exception("Invalid json in get_vehicle_information; missing data")
 
         response = VehiclesResponse()
